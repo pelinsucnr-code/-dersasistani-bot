@@ -15,7 +15,6 @@ async def mesaj_isle(update, context):
     await update.message.reply_text(f"Aldım: {metin} - Bunun üzerine çalışalım!")
 
 def main():
-    # Python 3.14 için event loop düzeltmesi
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     
@@ -23,8 +22,8 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("ders", dersler))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, mesaj_isle))
-    print("Botlar baslatiliyor...")
-    app.run_polling()
+    print("Bot başlatılıyor...")
+    app.run_polling(drop_pending_updates=True)
 
 if __name__ == "__main__":
     main()
